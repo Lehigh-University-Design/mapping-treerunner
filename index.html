@@ -11,6 +11,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/css/style.css" />
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
@@ -26,22 +28,13 @@
 
 		<section id="scrolly">
 			<figure>
-				<p>0</p>
+				<!--<p class="ind">0</p>-->
+
+				<div id="map"></div>
 			</figure>
 
-			<article>
-				<div class="step" data-step="1">
-					<p>STEP 1</p>
-				</div>
-				<div class="step" data-step="2">
-					<p>STEP 2</p>
-				</div>
-				<div class="step" data-step="3">
-					<p>STEP 3</p>
-				</div>
-				<div class="step" data-step="4">
-					<p>STEP 4</p>
-				</div>
+			<article id="article_container">
+				
 			</article>
 		</section>
 
@@ -51,67 +44,150 @@
 	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
 	<script src="https://unpkg.com/scrollama"></script>
 	<script>
-		// using d3 for convenience
-		var main = d3.select("main");
-		var scrolly = main.select("#scrolly");
-		var figure = scrolly.select("figure");
-		var article = scrolly.select("article");
-		var step = article.selectAll(".step");
 
-		// initialize the scrollama
-		var scroller = scrollama();
-
-		// generic window resize listener event
-		function handleResize() {
-			// 1. update height of step elements
-			var stepH = Math.floor(window.innerHeight * 0.75);
-			step.style("height", stepH + "px");
-
-			var figureHeight = window.innerHeight / 2;
-			var figureMarginTop = (window.innerHeight - figureHeight) / 2;
-
-			figure
-				.style("height", figureHeight + "px")
-				.style("top", figureMarginTop + "px");
-
-			// 3. tell scrollama to update new element dimensions
-			scroller.resize();
-		}
-
-		// scrollama event handlers
-		function handleStepEnter(response) {
-			console.log(response);
-			// response = { element, direction, index }
-
-			// add color to current step only
-			step.classed("is-active", function (d, i) {
-				return i === response.index;
+		async function loadPyramids() {
+  			const response = await fetch('/data/pyramids.geojson', {
+				method: 'GET'
 			});
 
-			// update graphic based on step
-			figure.select("p").text(response.index + 1);
-		}
+  			const pyramids = await response.json();
+
+  			mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5sYWhvZGEiLCJhIjoiY2xuOWJucnEzMDVwcjJ2c2VtNWhuMTY4MCJ9.oDDjkq9KZ6BlMT2IlE6yig';
+			const map = new mapboxgl.Map({
+				container: 'map', // container ID
+				style: 'mapbox://styles/kevinlahoda/clnnkkqnh007g01pfafhlf0ze', // style URL
+				center: [31.134799, 29.975990], // starting position [lng, lat]
+				zoom: 15.5, // starting zoom
+				bearing: 27,
+				pitch: 45
+			});
+
+			map.on('load', () => {
+				map.addSource('pyramids', {
+				type: 'geojson',
+				data: pyramids
+				});
+				 
+				map.addLayer({
+				'id': 'pyramids-layer',
+				'type': 'circle',
+				'source': 'pyramids',
+				'paint': {
+				'circle-radius': 3,
+				'circle-stroke-width': 1,
+				'circle-color': 'black',
+				'circle-stroke-color': 'black'
+				}
+				});
+			});
+
+			map.scrollZoom.disable();
+
+  			for (const pyramid in pyramids.features) {
+
+			 	//console.log(`${pyramid}: ${pyramids.features[pyramid].id}`);
+  				const p = pyramids.features[pyramid];
+
+			 	let div = document.createElement('div');
+			 	div.setAttribute("class", "step");
+			 	div.setAttribute("id", p.id);
+			 	div.setAttribute("data-step", p.id);
+			 	div.setAttribute("data-long", p.geometry.coordinates[0]);
+			 	div.setAttribute("data-lat", p.geometry.coordinates[1]);
+
+			 	var para = document.createElement("p");
+			 	var pid = pyramid
+			 	var node = document.createTextNode("Step "+pid);
+			 	para.appendChild(node);
+
+			 	div.appendChild(para);
+
+			 	document.getElementById("article_container").appendChild(div);
+
+				//<div class="step" data-step="1">
+				//	<p>STEP 1</p>
+				//</div>
+
+			}
+
+  			//console.log(pyramids.features);
+
+  			// using d3 for convenience
+			var main = d3.select("main");
+			var scrolly = main.select("#scrolly");
+			var figure = scrolly.select("figure");
+			var article = scrolly.select("article");
+			var step = article.selectAll(".step");
+
+			// initialize the scrollama
+			var scroller = scrollama();
+
+			// generic window resize listener event
+			function handleResize() {
+				// 1. update height of step elements
+				var stepH = Math.floor(window.innerHeight * 0.75);
+				step.style("height", stepH + "px");
+
+				var figureHeight = window.innerHeight;
+				var figureMarginTop = (window.innerHeight - figureHeight) / 2;
+
+				figure
+					.style("height", figureHeight + "px")
+					.style("top", figureMarginTop + "px");
+
+				// 3. tell scrollama to update new element dimensions
+				scroller.resize();
+			}
+
+			// scrollama event handlers
+			function handleStepEnter(response) {
+				console.log(response);
+				//response = { element, direction, index }
+
+				//console.log(response.element.dataset.long)
+
+				map.flyTo({
+					center: [response.element.dataset.long, response.element.dataset.lat],
+					essential: true // this animation is considered essential with respect to prefers-reduced-motion
+				});
+
+				// add color to current step only
+				step.classed("is-active", function (d, i) {
+					return i === response.index;
+				});
 
 
-		function init() {
 
-			// 1. force a resize on load to ensure proper dimensions are sent to scrollama
-			handleResize();
+				// update graphic based on step
+				figure.select("p.ind").text(response.index);
+			}
 
-			// 2. setup the scroller passing options
-			// 		this will also initialize trigger observations
-			// 3. bind scrollama event handlers (this can be chained like below)
-			scroller
-				.setup({
-					step: "#scrolly article .step",
-					offset: 0.33,
-					debug: false
-				})
-				.onStepEnter(handleStepEnter);
-		}
 
-		// kick things off
-		init();
+			function init() {
+
+
+				// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+				handleResize();
+
+				// 2. setup the scroller passing options
+				// 		this will also initialize trigger observations
+				// 3. bind scrollama event handlers (this can be chained like below)
+				scroller
+					.setup({
+						step: "#scrolly article .step",
+						offset: 0.33,
+						debug: false
+					})
+					.onStepEnter(handleStepEnter);
+			}
+
+			// kick things off
+			init();
+
+			}
+
+			loadPyramids();
+
 	</script>
 </body>
 

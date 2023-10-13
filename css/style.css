@@ -51,13 +51,13 @@ a:hover {
 
 
 #outro {
-  height: 640px;
+  height: 240px;
 }
 
 #scrolly {
   position: relative;
   background-color: #f3f3f3;
-  padding: 1rem;
+  /*padding: 1rem;*/
 }
 
 article {
@@ -71,7 +71,8 @@ figure {
   position: -webkit-sticky;
   position: sticky;
   left: 0;
-  width: 100%;
+  width: 100vw;
+  height: 80vh;
   margin: 0;
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
@@ -80,10 +81,18 @@ figure {
   z-index: 0;
 }
 
+#map {
+  position: absolute;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+}
+
 figure p {
   text-align: center;
   padding: 1rem;
   position: absolute;
+  z-index: 100;
   top: 50%;
   left: 50%;
   -moz-transform: translate(-50%, -50%);
@@ -105,7 +114,7 @@ figure p {
 }
 
 .step.is-active p {
-  background-color: goldenrod;
+  background-color: papayawhip;
   color: #3b3b3b;
 }
 
