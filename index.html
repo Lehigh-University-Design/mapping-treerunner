@@ -15,7 +15,7 @@
 	<link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
 </head>
 
-<body>
+<body class="scrolly-body">
 
 	<main>
 
@@ -95,12 +95,12 @@
 			 	div.setAttribute("data-long", p.geometry.coordinates[0]);
 			 	div.setAttribute("data-lat", p.geometry.coordinates[1]);
 
-			 	var para = document.createElement("p");
+			 	var header = document.createElement("h2");
 			 	var pid = pyramid
 			 	var node = document.createTextNode("Step "+pid);
-			 	para.appendChild(node);
+			 	header.appendChild(node);
 
-			 	div.appendChild(para);
+			 	div.appendChild(header);
 
 			 	document.getElementById("article_container").appendChild(div);
 
@@ -155,8 +155,6 @@
 				step.classed("is-active", function (d, i) {
 					return i === response.index;
 				});
-
-
 
 				// update graphic based on step
 				figure.select("p.ind").text(response.index);

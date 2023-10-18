@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Mapbox Simple Embed</title>
+	<meta name="description" content="Simple Map Embed" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style-simple.css" />
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+
+	<main>
+		<section id="embed">
+			<div id="map-holder">
+				<div id="map"></div>
+			</div>
+			<div class='map-overlay' id='legend'>
+				<div class="legend-head">Avg SAT Scores</div>
+			</div>
+		</section>
+	</main>
+
+	<script>
+
+    // The value for 'accessToken' begins with 'pk...'
+    mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5sYWhvZGEiLCJhIjoiY2xuOWJucnEzMDVwcjJ2c2VtNWhuMTY4MCJ9.oDDjkq9KZ6BlMT2IlE6yig'; 
+    const map = new mapboxgl.Map({
+		container: 'map',
+		// Replace YOUR_STYLE_URL with your style URL.
+		style: 'mapbox://styles/kevinlahoda/clnm2pkm4004n01p50nq664h3/draft', 
+		center: [-73.881897, 40.719592],
+		zoom: 10.7
+    });
+
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.NavigationControl());
+
+    /* 
+	Add an event listener that runs
+	  when a user clicks on the map element.
+	*/
+	map.on('click', (event) => {
+		// If the user clicked on one of your markers, get its information.
+		const features = map.queryRenderedFeatures(event.point, {
+		layers: ['data-driven-circles'] // replace with your layer name
+		});
+		if (!features.length) {
+		return;
+		}
+		const feature = features[0];
+
+		console.log(feature);
+
+		/* 
+		Create a popup, specify its options 
+		and properties, and add it to the map.
+		*/
+		const popup = new mapboxgl.Popup({ offset: [0, -15] })
+		  .setLngLat(feature.geometry.coordinates)
+		  .setHTML(
+		    `<h3>${feature.properties["School Name"]}</h3><p>${feature.properties["Street Address"]}<br>Avg Math: ${feature.properties["Average Score (SAT Math)"]}<br>Avg Reading: ${feature.properties["Average Score (SAT Reading)"]}</p>`
+		  )
+		  .addTo(map);
+	});
+
+	// legend
+	map.on('load', () => {
+		const layers = [
+		  '0-700',
+		  '701-800',
+		  '801-900',
+		  '901-1000',
+		  '1001-1100',
+		  '1101-1200',
+		  '1201+'
+		];
+		const colors = [
+		  '#ebe64c',
+		  '#c2dd5f',
+		  '#9ac874',
+		  '#77a682',
+		  '#5b7c8b',
+		  '#424a80',
+		  '#2f0863'
+		];
+
+		layers.forEach((layer, i) => {
+			const color = colors[i];
+			const item = document.createElement('div');
+			const key = document.createElement('span');
+			key.className = 'legend-key';
+			key.style.backgroundColor = color;
+
+			const value = document.createElement('span');
+			value.innerHTML = `${layer}`;
+			item.appendChild(key);
+			item.appendChild(value);
+			legend.appendChild(item);
+		});
+
+	});
+
+	</script>
+</body>
+
+</html>

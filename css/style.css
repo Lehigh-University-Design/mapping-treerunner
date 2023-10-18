@@ -10,9 +10,9 @@ body {
 
 body {
   font-family: 'Roboto', sans-serif;
-  min-height: 1280px;
   color: #000000;
   font-size: 24px;
+  min-height: 1280px;
 }
 
 p,
@@ -23,6 +23,10 @@ h4,
 a {
   margin: 0;
   font-weight: 400;
+}
+
+h3 {
+  font-weight: 700;
 }
 
 a,
@@ -113,12 +117,12 @@ figure p {
   margin-bottom: 0;
 }
 
-.step.is-active p {
+.step.is-active h2 {
   background-color: papayawhip;
   color: #3b3b3b;
 }
 
-.step p {
+.step h2 {
   text-align: center;
   padding: 1rem;
   font-size: 1.5rem;
