@@ -1,3 +1,3 @@
-# Mapping Data
+# Scrollytelling Feature
 
-This repository is an exploration of embedding and interacting with mapbox data visualization.
+This repo is for my scrollytelling development
