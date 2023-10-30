@@ -45,33 +45,34 @@
 	<script src="https://unpkg.com/scrollama"></script>
 	<script>
 
-		async function loadPyramids() {
-  			const response = await fetch('data/pyramids.geojson', {
+		async function loadData() {
+  			const response = await fetch('data/data.geojson', {
 				method: 'GET'
 			});
 
-  			const pyramids = await response.json();
+  			const data = await response.json();
 
   			mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5sYWhvZGEiLCJhIjoiY2xuOWJucnEzMDVwcjJ2c2VtNWhuMTY4MCJ9.oDDjkq9KZ6BlMT2IlE6yig';
 			const map = new mapboxgl.Map({
 				container: 'map', // container ID
 				style: 'mapbox://styles/kevinlahoda/clnnkkqnh007g01pfafhlf0ze', // style URL
 				center: [31.134799, 29.975990], // starting position [lng, lat]
-				zoom: 15.5, // starting zoom
+				zoom: 16, // starting zoom
 				bearing: 27,
 				pitch: 45
 			});
 
 			map.on('load', () => {
-				map.addSource('pyramids', {
+				map.addSource('data', {
 				type: 'geojson',
-				data: pyramids
+				data: data
 				});
 				 
 				map.addLayer({
 				'id': 'pyramids-layer',
 				'type': 'circle',
-				'source': 'pyramids',
+				'source': 'data',
+				//this is for the map marker
 				'paint': {
 				'circle-radius': 3,
 				'circle-stroke-width': 1,
@@ -83,10 +84,10 @@
 
 			map.scrollZoom.disable();
 
-  			for (const pyramid in pyramids.features) {
+  			for (const item in data.features) {
 
-			 	//console.log(`${pyramid}: ${pyramids.features[pyramid].id}`);
-  				const p = pyramids.features[pyramid];
+			 	//console.log(`${data}: ${data.features[item].id}`);
+  				const p = data.features[item];
 
 			 	let div = document.createElement('div');
 			 	div.setAttribute("class", "step");
@@ -94,23 +95,38 @@
 			 	div.setAttribute("data-step", p.id);
 			 	div.setAttribute("data-long", p.geometry.coordinates[0]);
 			 	div.setAttribute("data-lat", p.geometry.coordinates[1]);
+			 	//var pid = item
 
-			 	var header = document.createElement("h2");
-			 	var pid = pyramid
-			 	var node = document.createTextNode("Step "+pid);
-			 	header.appendChild(node);
+			 	// header
+			 	if(p.properties.Title) {
+				 	var header = document.createElement("h2");
+				 	//var node = document.createTextNode("Step "+pid);
+				 	var node = document.createTextNode(p.properties.Title);
+				 	header.appendChild(node);
+				 	div.appendChild(header);
+			 	}
 
-			 	div.appendChild(header);
+			 	// image
+			 	if(p.properties.Image) {
+			 		var img = document.createElement("img");
+			 		img.src = p.properties.Image;
+			 		div.appendChild(img);
+			 	}
+
+			 	// description
+			 	if(p.properties.Description) {
+			 		var description = document.createElement("div");
+			 		description.id = 'description_'+p.id;
+			 		description.className = "description";
+			 		description.innerHTML = p.properties.Description;
+			 		div.appendChild(description);
+			 	}
 
 			 	document.getElementById("article_container").appendChild(div);
 
-				//<div class="step" data-step="1">
-				//	<p>STEP 1</p>
-				//</div>
-
 			}
 
-  			//console.log(pyramids.features);
+  			//console.log(data.features);
 
   			// using d3 for convenience
 			var main = d3.select("main");
@@ -184,7 +200,7 @@
 
 			}
 
-			loadPyramids();
+			loadData();
 
 	</script>
 </body>
