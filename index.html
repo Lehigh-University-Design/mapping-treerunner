@@ -28,8 +28,9 @@
 
 		<section id="scrolly">
 			<figure>
-				<!--<p class="ind">0</p>-->
-
+				<div id="masthead">
+					<h3>Egyptian Pyramids</h3>
+				</div>
 				<div id="map"></div>
 			</figure>
 
@@ -164,7 +165,8 @@
 
 				map.flyTo({
 					center: [response.element.dataset.long, response.element.dataset.lat],
-					essential: true // this animation is considered essential with respect to prefers-reduced-motion
+					essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+					offset: [50, 0],
 				});
 
 				// add color to current step only
@@ -173,7 +175,7 @@
 				});
 
 				// update graphic based on step
-				figure.select("p.ind").text(response.index);
+				//figure.select("p.ind").text(response.index);
 			}
 
 
