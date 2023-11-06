@@ -3,201 +3,77 @@
     {
       "type": "Feature",
       "properties": {
-        "Title": "Pyramid Lepsius I",
-        "Description": "<p>The Lepsius I Pyramid is the ruin of a large mud brick monument in Abu Rawash near Cairo. So far, it has not been attributed to any ruler. It is located to the east of the Pyramid of Djedefre. It owes its enigmatic name to the Egyptologist Karl Richard Lepsius, who placed it first in his list of pyramids of Egypt. </p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/1/14/Lepsius_I_Pyramid.jpg"
+        "Title": "Pyramid of Menkaure",
+        "Description": "<p>The pyramid of Menkaure is the smallest of the three main pyramids of the Giza pyramid complex, located on the Giza Plateau in the southwestern outskirts of Cairo, Egypt. It is thought to have been built to serve as the tomb of the Fourth Dynasty Egyptian Pharaoh Menkaure.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/3/38/Cairo%2C_Gizeh%2C_Pyramid_of_Menkaure%2C_Egypt%2C_Oct_2005.jpg",
+        "Slope": "51°20′25″",
+        "Tan": "1.25",
+        "Seked": "5 3/5",
+        "Size": "2000",
+        "Pharoah": "Menkaure"
       },
       "geometry": {
         "coordinates": [
-          31.094444,
-          30.040833
+          31.128327,
+          29.972378
         ],
         "type": "Point"
       },
-      "id": "113f94cc75d0d5b6c5d5e27a730f7bdd"
+      "id": "071c15b1c3dac008b878fe2eaf0cdbae"
     },
     {
       "type": "Feature",
       "properties": {
-        "Title": "Pyramid of Sinki",
-        "Description": "<p>Sinki Pyramid is a small pyramid located south of the ancient city of Abydos in New Valley Governorate, Egypt.</p>",
-        "Image": ""
+        "Title": "Red Pyramid",
+        "Description": "<p>The Red Pyramid, also called the North Pyramid, is the largest of the pyramids located at the Dahshur necropolis in Cairo, Egypt. Named for the rusty reddish hue of its red limestone stones, it is also the third largest Egyptian pyramid, after those of Khufu and Khafre at Giza. It is also believed to be Egypt's first successful attempt at constructing a \"true\" smooth-sided pyramid.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Rote_Pyramide_%28Dahschur%29_04.jpg/2560px-Rote_Pyramide_%28Dahschur%29_04.jpg",
+        "Slope": "43° 22'",
+        "Tan": "0.9446",
+        "Seked": "7 2/5",
+        "Size": "7500",
+        "Pharoah": "Sneferu"
       },
       "geometry": {
         "coordinates": [
-          31.966111,
-          26.157778
+          31.205833,
+          29.808333
         ],
         "type": "Point"
       },
-      "id": "206021131ce43282078851cb80ba0201"
+      "id": "58d51500cf83f3022cfde5ca909c214d"
     },
     {
       "type": "Feature",
       "properties": {
-        "Title": "Al Kula Pyramid",
-        "Description": "The Pyramid of el-Kula, along with the pyramids in Edfu-South, Elephantine, Ombos, Saujet el-Meitin, Seila, and Sinki, belongs to a group of seven very similar small step pyramids that were all built far away from the major centers of Egypt and about which very little is known. It is located approximately six kilometers north of the ancient site of Hierakonpolis near the village of Naga el-Mamariya.",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Perring_Vyse_Pyramid_of_el-Kula.jpg"
+        "Title": "Pyramid of Khafre",
+        "Description": "<p>The pyramid of Khafre or of Chephren is the middle of the three Ancient Egyptian Pyramids of Giza, the second tallest and second largest of the group. It is the tomb of the Fourth-Dynasty pharaoh Khafre (Chefren), who ruled c.2558−2532.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/6/69/Pyramid_of_Khafre_and_Sphinx%2C_Giza%2C_Greater_Cairo%2C_Egypt.jpg",
+        "Slope": "53°10'",
+        "Tan": "1.3351",
+        "Seked": "5 1/4",
+        "Size": "2000",
+        "Pharoah": "Khafra"
       },
       "geometry": {
         "coordinates": [
-          32.799999,
-          25.116667
+          31.130698,
+          29.975947
         ],
         "type": "Point"
       },
-      "id": "2f3fbf5aa08960b440487e87b872d76d"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Step Pyramid of Djoser",
-        "Description": "<p>The Step Pyramid of Djoser, is an archaeological site in the Saqqara necropolis, Egypt, northwest of the ruins of Memphis. The 6-tier, 4-sided structure is the earliest colossal stone building in Egypt. It was built in the 27th century BC during the Third Dynasty for the burial of Pharaoh Djoser. </p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Saqqara_pyramid_ver_2.jpg/600px-Saqqara_pyramid_ver_2.jpg"
-      },
-      "geometry": {
-        "coordinates": [
-          31.216644,
-          29.871215
-        ],
-        "type": "Point"
-      },
-      "id": "602df6f5006e089ba6a1e7a23959a9f0"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Pyramid of Seila",
-        "Description": "<p>The pyramid of Seila is one of a group of seven small step pyramids which are very similar to one another, along with the Edfu South pyramid, the pyramid of Elephantine, the pyramid of El-Kula, the pyramid of Naqada, the pyramid of Saujet el-Meitin, and the pyramid of Sinki. These pyramids were all built far from the major centres of Egypt and very little is known about them.</p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/f/fd/SeilaPyramidSouthSide.jpg"
-      },
-      "geometry": {
-        "coordinates": [
-          31.053581,
-          29.382589
-        ],
-        "type": "Point"
-      },
-      "id": "6ac37ab2a2a5097853d293cfc28e75b4"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Pyramid of Athribis",
-        "Description": "The pyramid of Athribis was a small mudbrick pyramid, which was located at Athribis (Tell Atrib) in the southern Nile Delta, northeast of the modern city of Banha. It was located the furthest north of all the pyramids in ancient Egypt and the only known pyramid to have been built in the Delta.",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Pyramide_von_Athribis.jpg"
-      },
-      "geometry": {
-        "coordinates": [
-          31.188056,
-          30.470556
-        ],
-        "type": "Point"
-      },
-      "id": "6ce8a6df54285b6bdd69c3d397ceaa04"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Buried Pyramid",
-        "Description": "<p>The Buried Pyramid (also called the Pyramid of Sekhemkhet) is an unfinished step pyramid constructed c. 2645 BC for Sekhemkhet Djoserty. He was the second pharaoh of the Third Dynasty of Ancient Egypt, which reigned over Egypt c. 2686–2613 BC and is usually placed at the beginning of the Old Kingdom of Egypt.</p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Sekhemkhet_pyramid_at_Saqqara.jpg"
-      },
-      "geometry": {
-        "coordinates": [
-          31.213,
-          29.866
-        ],
-        "type": "Point"
-      },
-      "id": "8b820702dcf6ee9ea95b82393b83f6bc"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Pyramid of Naqada (Pyramid of Ombos)",
-        "Description": "<p>The pyramid of Naqada, also called the pyramid of Ombos, is part of a group of seven very similar small step pyramids, which were all erected far from the major centres of Egypt and about which very little is known. It is located about 300 metres north of the ruins of the ancient site of Ombos, near the modern city of Naqada in Upper Egypt.</p>",
-        "Image": ""
-      },
-      "geometry": {
-        "coordinates": [
-          32.709167,
-          25.940556
-        ],
-        "type": "Point"
-      },
-      "id": "91f7d12014ac34295790e1e6b2610de8"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Pyramid of Elephantine",
-        "Description": "<p>The pyramid of Elephantine is part of a group of seven very similar small step pyramids, along with the pyramids at Edfu South, el-Kula, Naqada, Saujet el-Meitin [de], Seila, and Sinki [de]. All of these were built far from the main centres of Egypt and are very poorly understood. The pyramid of Elephantine is located in the northwest part of the Old Kingdom city on the south end of the island of Elephantine in the Nile. The structure was discovered in 1907, but it could only be identified as a pyramid after excavations by the German Archaeological Institute in 1978–79.</p>",
-        "Image": ""
-      },
-      "geometry": {
-        "coordinates": [
-          32.885278,
-          24.085556
-        ],
-        "type": "Point"
-      },
-      "id": "dce7eac1d659076427d3ba3124ed8d17"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Pyramid of Zawyet el-Maiyitin",
-        "Description": "<p>Zawyet el-Maiyitin, also called Zawyet Sultan or Zawyet el-Amwat is a small village in Egypt, located in the Minya Governorate. The site has a small step-pyramid of the late 3rd Dynasty, remarkable for being the only pyramid built on the east bank of the Nile. It also comprises rock-cut tombs of the late Old Kingdom.</p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Pyramide_von_Saujet_el-Meitin.JPG/2560px-Pyramide_von_Saujet_el-Meitin.JPG"
-      },
-      "geometry": {
-        "coordinates": [
-          30.828611,
-          28.045833
-        ],
-        "type": "Point"
-      },
-      "id": "dde85185d2bbe80b23798b8061aa44f2"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Edfu South Pyramid",
-        "Description": "<p>The Edfu South pyramid is part of a group of seven very similar small step pyramids which were all built far from the main centres of Egypt and about which very little is known, along with the pyramids of Elephantine, el-Kula, Naqada, Saujet el-Meitin [de], Sinki [de] and Seila. It is located about five kilometres south of Edfu near Naga el-Ghoneimeya. </p>",
-        "Image": ""
-      },
-      "geometry": {
-        "coordinates": [
-          32.841943,
-          24.943611
-        ],
-        "type": "Point"
-      },
-      "id": "e8a0dd7b87b709ea7417408702c5fdfc"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Layer Pyramid",
-        "Description": "<p>The Layer Pyramid (known locally in Arabic as el haram el midawwar, Arabic: الهرم المدور, meaning 'rubble-hill pyramid') is a ruined step pyramid dating to the 3rd Dynasty of Egypt (2686 BC to 2613 BC) and located in the necropolis of Zawyet El Aryan. Its ownership is uncertain and may be attributable to pharaoh Khaba.</p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/4/42/Khaba_pyramid_at_Zawyet_el%27Aryan.jpg"
-      },
-      "geometry": {
-        "coordinates": [
-          31.161262,
-          29.93282
-        ],
-        "type": "Point"
-      },
-      "id": "ed92e74959e859dfcaa5e04ebf0a425f"
+      "id": "5c6c5128e6ad8a8e5dc987e648b2465e"
     },
     {
       "type": "Feature",
       "properties": {
         "Title": "Pyramid of Meidum",
-        "Description": "Meidum, Maydum or Maidum is an archaeological site in Lower Egypt. It contains a large pyramid and several mudbrick mastabas. The pyramid was Egypt's first straight-sided one, but it partially collapsed in ancient times.",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Meidoum03.jpg/2560px-Meidoum03.jpg"
+        "Description": "<p>Meidum, Maydum or Maidum is an archaeological site in Lower Egypt. It contains a large pyramid and several mudbrick mastabas. The pyramid was Egypt's first straight-sided one, but it partially collapsed in ancient times.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Meidoum03.jpg/2560px-Meidoum03.jpg",
+        "Slope": "51° 50' 35\"",
+        "Tan": "1.2727",
+        "Seked": "5 1/2",
+        "Size": "4000",
+        "Pharoah": "Sneferu"
       },
       "geometry": {
         "coordinates": [
@@ -206,14 +82,19 @@
         ],
         "type": "Point"
       },
-      "id": "f372bf80ed1970d7b1e399c68bae0845"
+      "id": "767917aec185145cad34d7c145588d48"
     },
     {
       "type": "Feature",
       "properties": {
         "Title": "Bent Pyramid",
-        "Description": "<p>The Bent Pyramid is an ancient Egyptian pyramid located at the royal necropolis of Dahshur, approximately 40 kilometres (25 mi) south of Cairo, built under the Old Kingdom Pharaoh Sneferu (c. 2600 BC). A unique example of early pyramid development in Egypt, this was the second pyramid built by Sneferu.</p><p>The Bent Pyramid rises from the desert at a 54-degree inclination, but the top section (above 47 metres [154 ft]) is built at the shallower angle of 43 degrees, lending the pyramid a visibly 'bent' appearance.</p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Bent_Pyramid_%E6%9B%B2%E6%8A%98%E9%87%91%E5%AD%97%E5%A1%94_-_panoramio.jpg"
+        "Description": "<p>The Bent Pyramid is an ancient Egyptian pyramid located at the royal necropolis of Dahshur, approximately 40 kilometres (25 mi) south of Cairo, built under the Old Kingdom Pharaoh Sneferu (c. 2600 BC). A unique example of early pyramid development in Egypt, this was the second pyramid built by Sneferu.</p>\n\n<p>The Bent Pyramid rises from the desert at a 54-degree inclination, but the top section (above 47 metres [154 ft]) is built at the shallower angle of 43 degrees, lending the pyramid a visibly 'bent' appearance.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Bent_Pyramid_%E6%9B%B2%E6%8A%98%E9%87%91%E5%AD%97%E5%A1%94_-_panoramio.jpg",
+        "Slope": "43° 22'",
+        "Tan": "0.9446",
+        "Seked": "7 2/5",
+        "Size": "6500",
+        "Pharoah": "Sneferu"
       },
       "geometry": {
         "coordinates": [
@@ -222,7 +103,28 @@
         ],
         "type": "Point"
       },
-      "id": "f7045a7570bd4a86ce7a38f3f701fc42"
+      "id": "8fb6c00badc6d98b01898682877b668a"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Title": "The Great Pyramid of Giza",
+        "Description": "<p>The Great Pyramid of Giza[a] is the largest Egyptian pyramid and served as the tomb of pharaoh Khufu, who ruled during the Fourth Dynasty of the Old Kingdom. Built in the early 26th century BC, over a period of about 27 years, the pyramid is the oldest of the Seven Wonders of the Ancient World, and the only wonder that has remained largely intact. It is the most famous monument of the Giza pyramid complex, which is part of the UNESCO World Heritage Site \"Memphis and its Necropolis\". It is situated at the northern end of the line of the three pyramids at Giza.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
+        "Slope": "51° 50' 40\"",
+        "Tan": "1.2728",
+        "Seked": "5 1/2",
+        "Size": "20000",
+        "Pharoah": "Khufu"
+      },
+      "geometry": {
+        "coordinates": [
+          31.134167,
+          29.979167
+        ],
+        "type": "Point"
+      },
+      "id": "bd663bac6a07fc30b5d646181c817661"
     }
   ],
   "type": "FeatureCollection"

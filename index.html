@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="css/style.css" />
 	<script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+	<!-- Load d3.js -->
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/textures@1.2.3/dist/textures.min.js"></script>
 </head>
 
 <body class="scrolly-body">
@@ -34,9 +37,7 @@
 				<div id="map"></div>
 			</figure>
 
-			<article id="article_container">
-				
-			</article>
+			<article id="article_container"></article>
 		</section>
 
 		<section id="outro"></section>
@@ -46,7 +47,18 @@
 	<script src="https://unpkg.com/scrollama"></script>
 	<script>
 
+		// Declare the chart dimensions and margins.
+		const width = 400;
+		const height = 400;
+		const marginTop = 20;
+		const marginRight = 20;
+		const marginBottom = 30;
+		const marginLeft = 40;
+		const margin = ({top: 20, right: 150, bottom: 30, left: 50})
+
+
 		async function loadData() {
+  			
   			const response = await fetch('data/data.geojson', {
 				method: 'GET'
 			});
@@ -59,6 +71,7 @@
 				style: 'mapbox://styles/kevinlahoda/clnnkkqnh007g01pfafhlf0ze', // style URL
 				center: [31.134799, 29.975990], // starting position [lng, lat]
 				zoom: 16, // starting zoom
+				interactive: false,
 				bearing: 27,
 				pitch: 45
 			});
@@ -96,22 +109,56 @@
 			 	div.setAttribute("data-step", p.id);
 			 	div.setAttribute("data-long", p.geometry.coordinates[0]);
 			 	div.setAttribute("data-lat", p.geometry.coordinates[1]);
+
 			 	//var pid = item
 
-			 	// header
-			 	if(p.properties.Title) {
-				 	var header = document.createElement("h2");
-				 	//var node = document.createTextNode("Step "+pid);
+			 	/* alt image and header
+			 	<div class="alt-media">
+					<div class="header-holder">
+						<h2>Pyramid Lepsius I</h2>
+					</div>
+					<div class="image-holder">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Lepsius_I_Pyramid.jpg">
+					</div>
+				</div>
+				*/
+
+				// header
+			 	if(p.properties.Title && p.properties.Image) {
+			 		var alt_media = document.createElement("div");
+			 		alt_media.classList.add("alt-media");
+			 		var header_holder = document.createElement("div");
+			 		header_holder.classList.add("header-holder");
+			 		var header = document.createElement("h2");
 				 	var node = document.createTextNode(p.properties.Title);
 				 	header.appendChild(node);
-				 	div.appendChild(header);
-			 	}
-
-			 	// image
-			 	if(p.properties.Image) {
-			 		var img = document.createElement("img");
+				 	header_holder.appendChild(header);
+				 	alt_media.appendChild(header_holder);
+			 		var image_holder = document.createElement("div");
+			 		image_holder.classList.add("image-holder");
+				 	var img = document.createElement("img");
 			 		img.src = p.properties.Image;
-			 		div.appendChild(img);
+			 		image_holder.appendChild(img);
+			 		div.appendChild(alt_media);
+			 		alt_media.appendChild(image_holder);
+			 	} else {
+
+			 		// header
+				 	if(p.properties.Title) {
+					 	var header = document.createElement("h2");
+					 	//var node = document.createTextNode("Step "+pid);
+					 	var node = document.createTextNode(p.properties.Title);
+					 	header.appendChild(node);
+					 	div.appendChild(header);
+				 	}
+
+				 	// image
+				 	if(p.properties.Image) {
+				 		var img = document.createElement("img");
+				 		img.src = p.properties.Image;
+				 		div.appendChild(img);
+				 	}
+
 			 	}
 
 			 	// description
@@ -122,6 +169,35 @@
 			 		description.innerHTML = p.properties.Description;
 			 		div.appendChild(description);
 			 	}
+
+			 	// Create the SVG Chart container.
+				const svg = d3.create("svg")
+				    .attr("width", width)
+				    .attr("height", height)
+				    .style("background-color","#d7dce5")
+				    ;
+
+				const pyramid = svg.append("g")
+                     .attr("transform",`translate(${margin.top},${margin.left})`)
+
+                const t = textures.lines()
+                    .orientation("4/8")
+                   .stroke("#e77d21").strokeWidth(8)
+
+                svg.call(t)
+
+                var sym =  
+					d3.symbol().type(d3.symbolTriangle).size(p.properties.Size); 
+					        svg
+					            .append("path") 
+					            .attr("d", sym) 
+					            .attr("transform", "translate(50, 50)")
+					            .style("fill",t.url())
+								.style("stroke","#faac75")
+								.style("stroke-width",3)
+
+				// Append the SVG element.
+				div.append(svg.node());
 
 			 	document.getElementById("article_container").appendChild(div);
 
@@ -143,7 +219,7 @@
 			function handleResize() {
 				// 1. update height of step elements
 				var stepH = Math.floor(window.innerHeight * 0.75);
-				step.style("height", stepH + "px");
+				//step.style("height", stepH + "px");
 
 				var figureHeight = window.innerHeight;
 				var figureMarginTop = (window.innerHeight - figureHeight) / 2;
@@ -166,6 +242,7 @@
 				map.flyTo({
 					center: [response.element.dataset.long, response.element.dataset.lat],
 					essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+					zoom: 16,
 					offset: [50, 0],
 				});
 

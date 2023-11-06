@@ -118,6 +118,7 @@ figure {
 
 #masthead h3 {
   font-weight: 400;
+  color: red;
 }
 
 figure p {
@@ -139,6 +140,7 @@ figure p {
   margin: 0 auto 2rem auto;
   color: #fff;
   background: transparent;
+  margin-bottom: 60vh;
 }
 
 .step:last-child {
@@ -176,6 +178,38 @@ figure p {
 
 .step .description p:last-child {
   margin-bottom: 0;
+}
+
+/* alt treatment for image with header over top.*/
+
+.step .alt-media {
+ position: relative;
+}
+
+.step .alt-media .header-holder {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(0,0,0,0.1);
+}
+
+.step .alt-media .header-holder h2 {
+  background: transparent;
+  color: #000;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+svg {
+  display:block;
+  margin:auto;
 }
 
 /* mobile breakpoint */
