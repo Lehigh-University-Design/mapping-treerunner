@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>Mapbox Scrollytelling</title>
+	<title>▲ Egyptian Pyramids</title>
 	<meta name="description" content="Egyptian Pyramids" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +32,7 @@
 		<section id="scrolly">
 			<figure>
 				<div id="masthead">
-					<h3>Egyptian Pyramids</h3>
+					<h3>▲ Egyptian Pyramids</h3>
 				</div>
 				<div id="map"></div>
 			</figure>
@@ -49,12 +49,41 @@
 
 		// Declare the chart dimensions and margins.
 		const width = 400;
-		const height = 400;
+		const height = 224;
 		const marginTop = 20;
 		const marginRight = 20;
 		const marginBottom = 30;
 		const marginLeft = 40;
 		const margin = ({top: 20, right: 150, bottom: 30, left: 50})
+
+		function calcPercentage(x, y) {
+			return (x / y) * 100;
+		}
+
+		function percentage_of(num, of) {
+		   var result = (num / 100) * of;
+		   return result
+		}
+
+		function draw_tri(t, pct, width, height)
+		{
+
+			var triangle = [];
+
+			var b = {x:width-percentage_of(100-pct, width)/2, y:height};
+		    var c = {x:percentage_of(100-pct, width)/2, y:height};
+		    var a = {x:0, y:0};
+
+		    var t = parseFloat(t);
+		       
+		    a.x = width/2;
+		    a.y = (b.y+c.y)/2 + t* (c.x-b.x);
+
+		    triangle.push(a, b, c, a);
+
+		    return triangle;
+
+		}
 
 
 		async function loadData() {
@@ -69,8 +98,8 @@
 			const map = new mapboxgl.Map({
 				container: 'map', // container ID
 				style: 'mapbox://styles/kevinlahoda/clnnkkqnh007g01pfafhlf0ze', // style URL
-				center: [31.134799, 29.975990], // starting position [lng, lat]
-				zoom: 16, // starting zoom
+				center: [31.134167, 29.979167], // starting position [lng, lat]
+				zoom: 12, // starting zoom
 				interactive: false,
 				bearing: 27,
 				pitch: 45
@@ -161,6 +190,85 @@
 
 			 	}
 
+			 	let info_div = document.createElement('div');
+			 	info_div.setAttribute("class", "info_div");
+
+			 	var pharoah = document.createElement("p");
+				var node = document.createTextNode("Pharoah: "+p.properties.Pharoah);
+				pharoah.appendChild(node);
+
+				var tan = document.createElement("p");
+				var node = document.createTextNode("Tan: "+p.properties.Tan);
+				tan.appendChild(node);
+
+				var slope = document.createElement("p");
+				var node = document.createTextNode("Slope: "+p.properties.Slope.slice(1)+'°');
+				slope.appendChild(node);
+
+				var seked = document.createElement("p");
+				var node = document.createTextNode("Seked: "+p.properties.Seked);
+				seked.appendChild(node);
+
+			 	var info_holder = document.createElement("div");
+			 	info_holder.classList.add("info-holder");
+			 	info_holder.appendChild(pharoah);
+			 	info_holder.appendChild(tan);
+			 	info_holder.appendChild(slope);
+			 	info_holder.appendChild(seked);
+
+			 	var svg_holder = document.createElement("div");
+			 	svg_holder.classList.add("svg-holder");
+
+
+				// Create the SVG Chart container.
+				const svg = d3.create("svg")
+				    .attr("viewBox", `0 0 400 250`)
+				    .style("background-color","#fff")
+				    ;
+
+				const pyramid = svg.append("g")
+                     .attr("transform",`translate(${margin.top},${margin.left})`)
+
+                // prepare a helper function
+				var lineFunc = d3.line()
+				  .x(function(d) { return d.x })
+				  .y(function(d) { return d.y })
+
+                const t = textures.lines()
+                	.orientation("horizontal")
+                	.stroke("#e77d21")
+                	.size(8)
+                	.strokeWidth(4);
+
+                const to = textures.lines()
+                	.orientation("horizontal")
+                	.stroke("#666666")
+                	.size(4)
+                	.strokeWidth(2);
+
+                svg.call(t)
+                svg.call(to)
+                
+		        svg
+		            .append("path") 
+		            .attr('d', lineFunc(draw_tri(.51, 100, width, height)))
+		            .attr('stroke', '#e77d21')
+		            .attr('fill', t.url());
+
+		        svg
+		            .append("path") 
+		            .attr('d', lineFunc(draw_tri(p.properties.Slope, calcPercentage(p.properties.Size, 2583283), width, height)))
+		            .attr('stroke', '#e77d21')
+		            .attr('fill', to.url());
+
+				// Append the SVG element.
+				svg_holder.append(svg.node());
+
+				info_div.appendChild(info_holder);
+				info_div.appendChild(svg_holder);
+				div.appendChild(info_div);
+
+
 			 	// description
 			 	if(p.properties.Description) {
 			 		var description = document.createElement("div");
@@ -169,35 +277,6 @@
 			 		description.innerHTML = p.properties.Description;
 			 		div.appendChild(description);
 			 	}
-
-			 	// Create the SVG Chart container.
-				const svg = d3.create("svg")
-				    .attr("width", width)
-				    .attr("height", height)
-				    .style("background-color","#d7dce5")
-				    ;
-
-				const pyramid = svg.append("g")
-                     .attr("transform",`translate(${margin.top},${margin.left})`)
-
-                const t = textures.lines()
-                    .orientation("4/8")
-                   .stroke("#e77d21").strokeWidth(8)
-
-                svg.call(t)
-
-                var sym =  
-					d3.symbol().type(d3.symbolTriangle).size(p.properties.Size); 
-					        svg
-					            .append("path") 
-					            .attr("d", sym) 
-					            .attr("transform", "translate(50, 50)")
-					            .style("fill",t.url())
-								.style("stroke","#faac75")
-								.style("stroke-width",3)
-
-				// Append the SVG element.
-				div.append(svg.node());
 
 			 	document.getElementById("article_container").appendChild(div);
 

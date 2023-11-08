@@ -3,13 +3,55 @@
     {
       "type": "Feature",
       "properties": {
+        "Title": "The Great Pyramid of Giza",
+        "Description": "<p>The Great Pyramid of Giza[a] is the largest Egyptian pyramid and served as the tomb of pharaoh Khufu, who ruled during the Fourth Dynasty of the Old Kingdom. Built in the early 26th century BC, over a period of about 27 years, the pyramid is the oldest of the Seven Wonders of the Ancient World, and the only wonder that has remained largely intact. It is the most famous monument of the Giza pyramid complex, which is part of the UNESCO World Heritage Site \"Memphis and its Necropolis\". It is situated at the northern end of the line of the three pyramids at Giza.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
+        "Slope": ".51",
+        "Tan": "1.2728",
+        "Seked": "5 1/2",
+        "Size": "2583283",
+        "Pharoah": "Khufu"
+      },
+      "geometry": {
+        "coordinates": [
+          31.134167,
+          29.979167
+        ],
+        "type": "Point"
+      },
+      "id": "bd663bac6a07fc30b5d646181c817661"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Title": "Pyramid of Khafre",
+        "Description": "<p>The pyramid of Khafre or of Chephren is the middle of the three Ancient Egyptian Pyramids of Giza, the second tallest and second largest of the group. It is the tomb of the Fourth-Dynasty pharaoh Khafre (Chefren), who ruled c.2558−2532.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/6/69/Pyramid_of_Khafre_and_Sphinx%2C_Giza%2C_Greater_Cairo%2C_Egypt.jpg",
+        "Slope": ".53",
+        "Tan": "1.3351",
+        "Seked": "5 1/4",
+        "Size": "2211096",
+        "Pharoah": "Khafra"
+      },
+      "geometry": {
+        "coordinates": [
+          31.130698,
+          29.975947
+        ],
+        "type": "Point"
+      },
+      "id": "5c6c5128e6ad8a8e5dc987e648b2465e"
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "Title": "Pyramid of Menkaure",
         "Description": "<p>The pyramid of Menkaure is the smallest of the three main pyramids of the Giza pyramid complex, located on the Giza Plateau in the southwestern outskirts of Cairo, Egypt. It is thought to have been built to serve as the tomb of the Fourth Dynasty Egyptian Pharaoh Menkaure.</p>",
         "Image": "https://upload.wikimedia.org/wikipedia/commons/3/38/Cairo%2C_Gizeh%2C_Pyramid_of_Menkaure%2C_Egypt%2C_Oct_2005.jpg",
-        "Slope": "51°20′25″",
+        "Slope": ".51",
         "Tan": "1.25",
         "Seked": "5 3/5",
-        "Size": "2000",
+        "Size": "235183",
         "Pharoah": "Menkaure"
       },
       "geometry": {
@@ -27,10 +69,10 @@
         "Title": "Red Pyramid",
         "Description": "<p>The Red Pyramid, also called the North Pyramid, is the largest of the pyramids located at the Dahshur necropolis in Cairo, Egypt. Named for the rusty reddish hue of its red limestone stones, it is also the third largest Egyptian pyramid, after those of Khufu and Khafre at Giza. It is also believed to be Egypt's first successful attempt at constructing a \"true\" smooth-sided pyramid.</p>",
         "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Rote_Pyramide_%28Dahschur%29_04.jpg/2560px-Rote_Pyramide_%28Dahschur%29_04.jpg",
-        "Slope": "43° 22'",
+        "Slope": ".43",
         "Tan": "0.9446",
         "Seked": "7 2/5",
-        "Size": "7500",
+        "Size": "1694000",
         "Pharoah": "Sneferu"
       },
       "geometry": {
@@ -45,55 +87,13 @@
     {
       "type": "Feature",
       "properties": {
-        "Title": "Pyramid of Khafre",
-        "Description": "<p>The pyramid of Khafre or of Chephren is the middle of the three Ancient Egyptian Pyramids of Giza, the second tallest and second largest of the group. It is the tomb of the Fourth-Dynasty pharaoh Khafre (Chefren), who ruled c.2558−2532.</p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/6/69/Pyramid_of_Khafre_and_Sphinx%2C_Giza%2C_Greater_Cairo%2C_Egypt.jpg",
-        "Slope": "53°10'",
-        "Tan": "1.3351",
-        "Seked": "5 1/4",
-        "Size": "2000",
-        "Pharoah": "Khafra"
-      },
-      "geometry": {
-        "coordinates": [
-          31.130698,
-          29.975947
-        ],
-        "type": "Point"
-      },
-      "id": "5c6c5128e6ad8a8e5dc987e648b2465e"
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "Title": "Pyramid of Meidum",
-        "Description": "<p>Meidum, Maydum or Maidum is an archaeological site in Lower Egypt. It contains a large pyramid and several mudbrick mastabas. The pyramid was Egypt's first straight-sided one, but it partially collapsed in ancient times.</p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Meidoum03.jpg/2560px-Meidoum03.jpg",
-        "Slope": "51° 50' 35\"",
-        "Tan": "1.2727",
-        "Seked": "5 1/2",
-        "Size": "4000",
-        "Pharoah": "Sneferu"
-      },
-      "geometry": {
-        "coordinates": [
-          31.156944,
-          29.388056
-        ],
-        "type": "Point"
-      },
-      "id": "767917aec185145cad34d7c145588d48"
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "Title": "Bent Pyramid",
         "Description": "<p>The Bent Pyramid is an ancient Egyptian pyramid located at the royal necropolis of Dahshur, approximately 40 kilometres (25 mi) south of Cairo, built under the Old Kingdom Pharaoh Sneferu (c. 2600 BC). A unique example of early pyramid development in Egypt, this was the second pyramid built by Sneferu.</p>\n\n<p>The Bent Pyramid rises from the desert at a 54-degree inclination, but the top section (above 47 metres [154 ft]) is built at the shallower angle of 43 degrees, lending the pyramid a visibly 'bent' appearance.</p>",
         "Image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Bent_Pyramid_%E6%9B%B2%E6%8A%98%E9%87%91%E5%AD%97%E5%A1%94_-_panoramio.jpg",
-        "Slope": "43° 22'",
+        "Slope": ".43",
         "Tan": "0.9446",
         "Seked": "7 2/5",
-        "Size": "6500",
+        "Size": "1237040",
         "Pharoah": "Sneferu"
       },
       "geometry": {
@@ -108,23 +108,23 @@
     {
       "type": "Feature",
       "properties": {
-        "Title": "The Great Pyramid of Giza",
-        "Description": "<p>The Great Pyramid of Giza[a] is the largest Egyptian pyramid and served as the tomb of pharaoh Khufu, who ruled during the Fourth Dynasty of the Old Kingdom. Built in the early 26th century BC, over a period of about 27 years, the pyramid is the oldest of the Seven Wonders of the Ancient World, and the only wonder that has remained largely intact. It is the most famous monument of the Giza pyramid complex, which is part of the UNESCO World Heritage Site \"Memphis and its Necropolis\". It is situated at the northern end of the line of the three pyramids at Giza.</p>",
-        "Image": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg",
-        "Slope": "51° 50' 40\"",
-        "Tan": "1.2728",
+        "Title": "Pyramid of Meidum",
+        "Description": "<p>Meidum, Maydum or Maidum is an archaeological site in Lower Egypt. It contains a large pyramid and several mudbrick mastabas. The pyramid was Egypt's first straight-sided one, but it partially collapsed in ancient times.</p>",
+        "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Meidoum03.jpg/2560px-Meidoum03.jpg",
+        "Slope": ".51",
+        "Tan": "1.2727",
         "Seked": "5 1/2",
-        "Size": "20000",
-        "Pharoah": "Khufu"
+        "Size": "638733",
+        "Pharoah": "Sneferu"
       },
       "geometry": {
         "coordinates": [
-          31.134167,
-          29.979167
+          31.156944,
+          29.388056
         ],
         "type": "Point"
       },
-      "id": "bd663bac6a07fc30b5d646181c817661"
+      "id": "767917aec185145cad34d7c145588d48"
     }
   ],
   "type": "FeatureCollection"

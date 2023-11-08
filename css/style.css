@@ -72,7 +72,7 @@ a:hover {
 
 
 #outro {
-  height: 540px;
+  height: 0px;
 }
 
 #scrolly {
@@ -117,8 +117,12 @@ figure {
 }
 
 #masthead h3 {
+  display: inline-block;
   font-weight: 400;
-  color: red;
+  color: #fff;
+  font-family: 'Roboto Slab', serif;
+  background-color: black;
+  padding: 3px 6px;
 }
 
 figure p {
@@ -145,6 +149,7 @@ figure p {
 
 .step:last-child {
   margin-bottom: 0;
+  padding-bottom: 2em;
 }
 
 .step.is-active h2 {
@@ -165,11 +170,22 @@ figure p {
   height: auto;
 }
 
-.step .description {
+.step .description, .step .info_div {
+  position: relative;
+  overflow: hidden;
   background-color: #fff;
   color: #000000;
   padding: 1em;
   font-size: 1em;
+}
+
+.step .info_div {
+  padding-bottom: 0;
+  display: flex;
+}
+
+.step .description {
+  padding-top: .5em;
 }
 
 .step .description p {
@@ -178,6 +194,27 @@ figure p {
 
 .step .description p:last-child {
   margin-bottom: 0;
+}
+
+.step .info-holder {
+  margin-bottom: 0;
+  width: 66%;
+  float: left;
+}
+
+.step .info-holder p {
+  padding-bottom: .15em;
+  margin-bottom: .15em;
+}
+
+.step .info-holder p:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.step .svg-holder {
+  width: 33%;
+  float: right;
 }
 
 /* alt treatment for image with header over top.*/
@@ -210,6 +247,7 @@ figure p {
 svg {
   display:block;
   margin:auto;
+  width: 100%;
 }
 
 /* mobile breakpoint */
