@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>▲ Egyptian Pyramids</title>
+	<title>△ Egyptian Pyramids</title>
 	<meta name="description" content="Egyptian Pyramids" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +32,7 @@
 		<section id="scrolly">
 			<figure>
 				<div id="masthead">
-					<h3>▲ Egyptian Pyramids</h3>
+					<h3>△ Egyptian Pyramids</h3>
 				</div>
 				<div id="map"></div>
 			</figure>
@@ -40,7 +40,16 @@
 			<article id="article_container"></article>
 		</section>
 
-		<section id="outro"></section>
+		<section id="outro">
+			<article id="conclusion_container">
+				<div class="step">
+					<div class="alt-media">
+							<div class="description">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci justo, lobortis in vehicula nec, faucibus vitae massa. Nunc eu hendrerit diam. Fusce pulvinar ligula id bibendum eleifend. Maecenas dictum quam porta, commodo enim eu, tempus magna. Aliquam euismod fermentum quam eget viverra.</p>
+							</div>
+						</div>
+			</article>
+		</section>
 	</main>
 
 	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
@@ -236,13 +245,13 @@
 
                 const t = textures.lines()
                 	.orientation("horizontal")
-                	.stroke("#e77d21")
+                	.stroke("#bdbbae")
                 	.size(8)
                 	.strokeWidth(4);
 
                 const to = textures.lines()
                 	.orientation("horizontal")
-                	.stroke("#666666")
+                	.stroke("#81816a")
                 	.size(4)
                 	.strokeWidth(2);
 
@@ -252,13 +261,13 @@
 		        svg
 		            .append("path") 
 		            .attr('d', lineFunc(draw_tri(.51, 100, width, height)))
-		            .attr('stroke', '#e77d21')
+		            .attr('stroke', '#bdbbae')
 		            .attr('fill', t.url());
 
 		        svg
 		            .append("path") 
 		            .attr('d', lineFunc(draw_tri(p.properties.Slope, calcPercentage(p.properties.Size, 2583283), width, height)))
-		            .attr('stroke', '#e77d21')
+		            .attr('stroke', '#81816a')
 		            .attr('fill', to.url());
 
 				// Append the SVG element.

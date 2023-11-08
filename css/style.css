@@ -70,11 +70,6 @@ a:hover {
   }
 }
 
-
-#outro {
-  height: 0px;
-}
-
 #scrolly {
   position: relative;
   background-color: #f3f3f3;
@@ -248,6 +243,15 @@ svg {
   display:block;
   margin:auto;
   width: 100%;
+}
+
+#outro {
+  padding-top: 2em;
+  background-color: #81816a;
+}
+
+#outro .step .description {
+  padding-top: 1em;
 }
 
 /* mobile breakpoint */
