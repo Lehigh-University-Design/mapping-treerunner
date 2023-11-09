@@ -114,25 +114,13 @@
 				pitch: 45
 			});
 
-			map.on('load', () => {
-				map.addSource('data', {
-				type: 'geojson',
-				data: data
-				});
-				 
-				map.addLayer({
-				'id': 'pyramids-layer',
-				'type': 'circle',
-				'source': 'data',
-				//this is for the map marker
-				'paint': {
-				'circle-radius': 3,
-				'circle-stroke-width': 1,
-				'circle-color': 'black',
-				'circle-stroke-color': 'black'
-				}
-				});
-			});
+			for (const feature of data.features) {
+			  // create a HTML element for each feature
+			  const el = document.createElement('div');
+			  el.className = 'marker';
+			  // make a marker for each feature and add to the map
+			  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+			}
 
 			map.scrollZoom.disable();
 
