@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>△ Egyptian Pyramids</title>
+	<meta name="description" content="Egyptian Pyramids" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&family=Roboto:ital,wght@0,300;0,700;1,300;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css" />
+	<script src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+	<!-- Load d3.js -->
+	<script src="https://d3js.org/d3.v7.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/textures@1.2.3/dist/textures.min.js"></script>
+</head>
+
+<body class="scrolly-body">
+
+	<main>
+
+		<section id="intro">
+			<div class="inner">
+				<h1>Egyptian Pyramids</h1>
+				<p>An exploration of the many pyramids of Egypt</p>
+			</div>
+		</section>
+
+		<section id="scrolly">
+			<figure>
+				<div id="masthead">
+					<h3>△ Egyptian Pyramids</h3>
+				</div>
+				<div id="map"></div>
+			</figure>
+
+			<article id="article_container"></article>
+		</section>
+
+		<section id="outro">
+			<article id="conclusion_container">
+				<div class="step">
+					<div class="alt-media">
+							<div class="description">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean orci justo, lobortis in vehicula nec, faucibus vitae massa. Nunc eu hendrerit diam. Fusce pulvinar ligula id bibendum eleifend. Maecenas dictum quam porta, commodo enim eu, tempus magna. Aliquam euismod fermentum quam eget viverra.</p>
+							</div>
+						</div>
+			</article>
+		</section>
+	</main>
+
+	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+	<script src="https://unpkg.com/scrollama"></script>
+	<script>
+
+		// Declare the chart dimensions and margins.
+		const width = 400;
+		const height = 224;
+		const marginTop = 20;
+		const marginRight = 20;
+		const marginBottom = 30;
+		const marginLeft = 40;
+		const margin = ({top: 20, right: 150, bottom: 30, left: 50})
+
+		function calcPercentage(x, y) {
+			return (x / y) * 100;
+		}
+
+		function percentage_of(num, of) {
+		   var result = (num / 100) * of;
+		   return result
+		}
+
+		function draw_tri(t, pct, width, height)
+		{
+
+			var triangle = [];
+
+			var b = {x:width-percentage_of(100-pct, width)/2, y:height};
+		    var c = {x:percentage_of(100-pct, width)/2, y:height};
+		    var a = {x:0, y:0};
+
+		    var t = parseFloat(t);
+		       
+		    a.x = width/2;
+		    a.y = (b.y+c.y)/2 + t* (c.x-b.x);
+
+		    triangle.push(a, b, c, a);
+
+		    return triangle;
+
+		}
+
+
+		async function loadData() {
+  			
+  			const response = await fetch('data/data.geojson', {
+				method: 'GET'
+			});
+
+  			const data = await response.json();
+
+  			mapboxgl.accessToken = 'pk.eyJ1Ijoia2V2aW5sYWhvZGEiLCJhIjoiY2xuOWJucnEzMDVwcjJ2c2VtNWhuMTY4MCJ9.oDDjkq9KZ6BlMT2IlE6yig';
+			const map = new mapboxgl.Map({
+				container: 'map', // container ID
+				style: 'mapbox://styles/kevinlahoda/clnnkkqnh007g01pfafhlf0ze', // style URL
+				center: [31.134167, 29.979167], // starting position [lng, lat]
+				zoom: 12, // starting zoom
+				interactive: false,
+				bearing: 27,
+				pitch: 45
+			});
+
+			for (const feature of data.features) {
+			  // create a HTML element for each feature
+			  const el = document.createElement('div');
+			  el.className = 'marker';
+			  // make a marker for each feature and add to the map
+			  new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+			}
+
+			map.scrollZoom.disable();
+
+  			for (const item in data.features) {
+
+			 	//console.log(`${data}: ${data.features[item].id}`);
+  				const p = data.features[item];
+
+			 	let div = document.createElement('div');
+			 	div.setAttribute("class", "step");
+			 	div.setAttribute("id", p.id);
+			 	div.setAttribute("data-step", p.id);
+			 	div.setAttribute("data-long", p.geometry.coordinates[0]);
+			 	div.setAttribute("data-lat", p.geometry.coordinates[1]);
+
+			 	//var pid = item
+
+			 	/* alt image and header
+			 	<div class="alt-media">
+					<div class="header-holder">
+						<h2>Pyramid Lepsius I</h2>
+					</div>
+					<div class="image-holder">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/1/14/Lepsius_I_Pyramid.jpg">
+					</div>
+				</div>
+				*/
+
+				// header
+			 	if(p.properties.Title && p.properties.Image) {
+			 		var alt_media = document.createElement("div");
+			 		alt_media.classList.add("alt-media");
+			 		var header_holder = document.createElement("div");
+			 		header_holder.classList.add("header-holder");
+			 		var header = document.createElement("h2");
+				 	var node = document.createTextNode(p.properties.Title);
+				 	header.appendChild(node);
+				 	header_holder.appendChild(header);
+				 	alt_media.appendChild(header_holder);
+			 		var image_holder = document.createElement("div");
+			 		image_holder.classList.add("image-holder");
+				 	var img = document.createElement("img");
+			 		img.src = p.properties.Image;
+			 		image_holder.appendChild(img);
+			 		div.appendChild(alt_media);
+			 		alt_media.appendChild(image_holder);
+			 	} else {
+
+			 		// header
+				 	if(p.properties.Title) {
+					 	var header = document.createElement("h2");
+					 	//var node = document.createTextNode("Step "+pid);
+					 	var node = document.createTextNode(p.properties.Title);
+					 	header.appendChild(node);
+					 	div.appendChild(header);
+				 	}
+
+				 	// image
+				 	if(p.properties.Image) {
+				 		var img = document.createElement("img");
+				 		img.src = p.properties.Image;
+				 		div.appendChild(img);
+				 	}
+
+			 	}
+
+			 	let info_div = document.createElement('div');
+			 	info_div.setAttribute("class", "info_div");
+
+			 	var pharoah = document.createElement("p");
+				var node = document.createTextNode("Pharoah: "+p.properties.Pharoah);
+				pharoah.appendChild(node);
+
+				var tan = document.createElement("p");
+				var node = document.createTextNode("Tan: "+p.properties.Tan);
+				tan.appendChild(node);
+
+				var slope = document.createElement("p");
+				var node = document.createTextNode("Slope: "+p.properties.Slope.slice(1)+'°');
+				slope.appendChild(node);
+
+				var seked = document.createElement("p");
+				var node = document.createTextNode("Seked: "+p.properties.Seked);
+				seked.appendChild(node);
+
+			 	var info_holder = document.createElement("div");
+			 	info_holder.classList.add("info-holder");
+			 	info_holder.appendChild(pharoah);
+			 	info_holder.appendChild(tan);
+			 	info_holder.appendChild(slope);
+			 	info_holder.appendChild(seked);
+
+			 	var svg_holder = document.createElement("div");
+			 	svg_holder.classList.add("svg-holder");
+
+
+				// Create the SVG Chart container.
+				const svg = d3.create("svg")
+				    .attr("viewBox", `0 0 400 250`)
+				    .style("background-color","#fff")
+				    ;
+
+				const pyramid = svg.append("g")
+                     .attr("transform",`translate(${margin.top},${margin.left})`)
+
+                // prepare a helper function
+				var lineFunc = d3.line()
+				  .x(function(d) { return d.x })
+				  .y(function(d) { return d.y })
+
+                const t = textures.lines()
+                	.orientation("horizontal")
+                	.stroke("#bdbbae")
+                	.size(8)
+                	.strokeWidth(4);
+
+                const to = textures.lines()
+                	.orientation("horizontal")
+                	.stroke("#81816a")
+                	.size(4)
+                	.strokeWidth(2);
+
+                svg.call(t)
+                svg.call(to)
+                
+		        svg
+		            .append("path") 
+		            .attr('d', lineFunc(draw_tri(.51, 100, width, height)))
+		            .attr('stroke', '#bdbbae')
+		            .attr('fill', t.url());
+
+		        svg
+		            .append("path") 
+		            .attr('d', lineFunc(draw_tri(p.properties.Slope, calcPercentage(p.properties.Size, 2583283), width, height)))
+		            .attr('stroke', '#81816a')
+		            .attr('fill', to.url());
+
+				// Append the SVG element.
+				svg_holder.append(svg.node());
+
+				info_div.appendChild(info_holder);
+				info_div.appendChild(svg_holder);
+				div.appendChild(info_div);
+
+
+			 	// description
+			 	if(p.properties.Description) {
+			 		var description = document.createElement("div");
+			 		description.id = 'description_'+p.id;
+			 		description.className = "description";
+			 		description.innerHTML = p.properties.Description;
+			 		div.appendChild(description);
+			 	}
+
+			 	document.getElementById("article_container").appendChild(div);
+
+			}
+
+  			//console.log(data.features);
+
+  			// using d3 for convenience
+			var main = d3.select("main");
+			var scrolly = main.select("#scrolly");
+			var figure = scrolly.select("figure");
+			var article = scrolly.select("article");
+			var step = article.selectAll(".step");
+
+			// initialize the scrollama
+			var scroller = scrollama();
+
+			// generic window resize listener event
+			function handleResize() {
+				// 1. update height of step elements
+				var stepH = Math.floor(window.innerHeight * 0.75);
+				//step.style("height", stepH + "px");
+
+				var figureHeight = window.innerHeight;
+				var figureMarginTop = (window.innerHeight - figureHeight) / 2;
+
+				figure
+					.style("height", figureHeight + "px")
+					.style("top", figureMarginTop + "px");
+
+				// 3. tell scrollama to update new element dimensions
+				scroller.resize();
+			}
+
+			// scrollama event handlers
+			function handleStepEnter(response) {
+				console.log(response);
+				//response = { element, direction, index }
+
+				//console.log(response.element.dataset.long)
+
+				map.flyTo({
+					center: [response.element.dataset.long, response.element.dataset.lat],
+					essential: true, // this animation is considered essential with respect to prefers-reduced-motion
+					zoom: 16,
+					offset: [50, 0],
+				});
+
+				// add color to current step only
+				step.classed("is-active", function (d, i) {
+					return i === response.index;
+				});
+
+				// update graphic based on step
+				//figure.select("p.ind").text(response.index);
+			}
+
+
+			function init() {
+
+
+				// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+				handleResize();
+
+				// 2. setup the scroller passing options
+				// 		this will also initialize trigger observations
+				// 3. bind scrollama event handlers (this can be chained like below)
+				scroller
+					.setup({
+						step: "#scrolly article .step",
+						offset: 0.33,
+						debug: false
+					})
+					.onStepEnter(handleStepEnter);
+			}
+
+			// kick things off
+			init();
+
+			}
+
+			loadData();
+
+	</script>
+</body>
+
+</html>
